@@ -15,3 +15,20 @@ A robust end-to-end (E2E) testing framework designed to validate cloud-hosted da
 * **Testing Framework:** Playwright & Pytest
 * **CI/CD:** GitHub Actions
 * **Cloud Infrastructure:** AWS S3
+
+## Installation & Setup
+To run this project locally, ensure you have Python installed, then follow these steps:
+
+### Set up virtual environment:
+
+python3 -m venv venv
+source venv/bin/activate
+
+### Install dependencies:
+
+pip install playwright pytest-playwright
+playwright install chromium
+
+### Run the tests:
+
+pytest test_dashboard.py
