@@ -1,8 +1,8 @@
 [![Python application](https://github.com/aftonrhodes/qa-automation-dashboard/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/aftonrhodes/qa-automation-dashboard/actions/workflows/python-app.yml)
 
-# QA Dashboard Automation Suite
+# E2E Playwright Test Suite
 
-A robust end-to-end (E2E) testing framework designed to validate cloud-hosted dashboard applications. This project demonstrates automated UI testing using Playwright and Python, integrated with a cloud-based CI/CD pipeline.
+A robust end-to-end (E2E) testing framework designed to validate cloud-hosted dashboard applications. This project demonstrates automated UI testing using Playwright and Python, with a production-grade CI/CD pipeline that includes automated daily regression testing to ensure continuous application health and reliability.
 
 ## Highlights
 * **Automated UI Testing:** Validates dashboard loading and critical UI elements.
