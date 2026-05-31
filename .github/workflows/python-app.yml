@@ -1,4 +1,4 @@
-name: Python application
+name: Python Application
 
 on:
   push:
@@ -12,24 +12,34 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
-    
     - name: Set up Python 3.10
       uses: actions/setup-python@v5
       with:
         python-version: "3.10"
-        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install playwright pytest-playwright
-        # This command installs the system dependencies required by Playwright
         playwright install-deps
-        # This installs the actual browser binary (Chromium)
         playwright install chromium
-        
-    - name: Test with pytest
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+    # Even if you install in build, for clean isolation, 
+    # we repeat the environment setup for the test job.
+    - name: Install dependencies
       run: |
-        pytest
+        python -m pip install --upgrade pip
+        pip install playwright pytest-playwright
+        playwright install chromium
+    - name: Run Tests
+      run: pytest
