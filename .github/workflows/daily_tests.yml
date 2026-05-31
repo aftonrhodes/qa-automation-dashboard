@@ -1,13 +1,26 @@
-name: Daily Playwright Pipeline
+name: Daily QA Tests
 
 on:
   schedule:
-    # Run at 09:00 AM UTC, Monday through Friday
     - cron: '0 9 * * 1-5'
-  workflow_dispatch: # Allows you to run it manually whenever you want
+  workflow_dispatch:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          pip install playwright pytest-playwright
+          playwright install --with-deps chromium
+
   test:
+    needs: build  # This ensures Test only runs if Build passes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
